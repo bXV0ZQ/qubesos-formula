@@ -1,0 +1,7 @@
+base:
+    'dom0':
+        - qubescusto.vms.dev
+    'tmpl-dev':
+        - qubescusto.templates.dev.config
+    'dev':
+        - qubescusto.vms.dev.config
