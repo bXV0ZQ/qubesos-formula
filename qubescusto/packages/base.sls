@@ -11,3 +11,7 @@ zsh:
 code:
     pkg.installed:
         - version: latest
+
+wkhtmltopdf:
+    pkg.installed:
+        - version: latest

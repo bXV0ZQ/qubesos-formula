@@ -1,7 +1,7 @@
 base:
     'dom0':
-        - qubescusto.vms.dev
+        - qubescusto.domains.dev
     'tmpl-dev':
-        - qubescusto.templates.dev.config
+        - qubescusto.domains.dev._tmpl.install
     'dev':
-        - qubescusto.vms.dev.config
+        - qubescusto.domains.dev.config

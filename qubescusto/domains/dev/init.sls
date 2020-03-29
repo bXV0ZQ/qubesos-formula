@@ -1,6 +1,6 @@
 include:
     - qvm.sys-firewall
-    - qubescusto.templates.dev
+    - qubescusto.domains.dev._tmpl
 
 dev:
     qvm.vm:
@@ -10,4 +10,4 @@ dev:
             - label: blue
         - require:
             - qvm: sys-firewall
-            - sls: qubescusto.templates.dev
+            - sls: qubescusto.domains.dev._tmpl

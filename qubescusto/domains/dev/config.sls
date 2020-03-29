@@ -1,5 +1,5 @@
 include:
-    - qubescusto.configs.code-dev
+    - qubescusto.configs.code.dev
 
 github_username:
     git.config_set:

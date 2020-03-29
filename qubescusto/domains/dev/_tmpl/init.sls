@@ -1,4 +1,4 @@
 tmpl-dev:
     qvm.clone:
-        - source: debian-9
+        - source: fedora-30
         - label: gray
