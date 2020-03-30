@@ -1,3 +1,5 @@
+# Global
+
 code_settings_telemetry:
     file.accumulated:
         - name: code_settings
@@ -7,6 +9,8 @@ code_settings_telemetry:
             - '"telemetry.enableCrashReporter": false'
         - require_in:
             - file: code_settings
+
+# Material Icon Theme
 
 code_ext_icons:
     cmd.run:
@@ -24,13 +28,15 @@ code_settings_ext_icons:
         - require_in:
             - file: code_settings
 
+# Asciidoctor
+
 code_ext_asciidoctor:
     cmd.run:
         - name: code --install-extension joaompinto.asciidoctor-vscode --force
         - runas: user
         - onlyif: which code && which wkhtmltopdf
 
-code_ext_asciidoctor_pdf:
+code_settings_ext_asciidoctor:
     file.accumulated:
         - name: code_settings
         - filename: /home/user/.config/Code/User/settings.json
@@ -40,17 +46,23 @@ code_ext_asciidoctor_pdf:
         - require_in:
             - file: code_settings
 
+# Encode/Decode
+
 code_ext_encode:
     cmd.run:
         - name: code --install-extension mitchdenny.ecdc --force
         - runas: user
         - onlyif: which code
 
+# Git
+
 code_ext_gitlens:
     cmd.run:
         - name: code --install-extension eamodio.gitlens --force
         - runas: user
         - onlyif: which code
+
+# Settings
 
 code_settings:
     file.managed:
