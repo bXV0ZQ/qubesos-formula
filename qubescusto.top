@@ -2,6 +2,6 @@ base:
     'dom0':
         - qubescusto.domains.dev
     'tmpl-dev':
-        - qubescusto.domains.dev._tmpl.install
+        - qubescusto.domains.dev.packages
     'dev':
         - qubescusto.domains.dev.config
