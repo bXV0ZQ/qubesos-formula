@@ -1,7 +1,7 @@
 base:
-    'dom0':
-        - qubescusto.domains.dev
-    'tmpl-dev':
-        - qubescusto.domains.dev.packages
-    'dev':
-        - qubescusto.domains.dev.config
+  'dom0':
+    - qubescusto.domains.dev
+  'tmpl-dev':
+    - qubescusto.domains.dev.template.config
+  'dev':
+    - qubescusto.domains.dev.config
