@@ -14,7 +14,7 @@ BEWARE this sync script pushes an entire folder hierarchy to `dom0`.
 
 ### What does sync script do
 
-Sync script push `qubescusto.top` and `qubescusto` folder (and children) to `/srv/salt` folder in `dom0`
+Sync script pulls `qubescusto.top` and `qubescusto` folder recursively (i.e. children are included) into `/srv/salt` folder in `dom0`
 
 Edit sync script `sync-dom0-from-vm.sh` to update variables as per your environment.
 
