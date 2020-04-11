@@ -2,7 +2,7 @@
 
 ### !!! WARNING !!!
 
-`dom0` is isolated from anything else and as no easy way to transfer stuff from a VM for a very good reason:
+`dom0` is isolated from anything else and has no easy way to transfer stuff from a VM for a very good reason:
 
 > A compromise of `dom0` implies a compromise of the entire system.
 
