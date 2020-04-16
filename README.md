@@ -51,6 +51,16 @@ Apply states to only tmpl-dev without dom0: `sudo qubesctl --skip-dom0 --targets
 
 Display logs: `sudo cat /var/log/qubes/mgmt-tmpl-dev.log`
 
+
+
+Enable qubescusto pillar file: `sudo qubesctl top.enable qubescusto pillar=true`
+
+Check qubescusto pillar file is enabled: `sudo qubesctl top.enabled pillar=true`
+
+Can also disable qubescusto pillar file: `sudo qubesctl top.disable qubescusto pillar=true`
+
+
+
 ## TODO TIPS
 
 Cannot require a package in a VM (require: pkg: <id>) as package installation has been executed in the template (i.e. in another minion)
