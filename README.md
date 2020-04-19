@@ -1,4 +1,6 @@
-## Synchronize states to dom0
+# My QubesOS Formulas
+
+## Synchronize formulas and pillars to dom0
 
 ### !!! WARNING !!!
 
@@ -14,9 +16,9 @@ BEWARE this sync script pushes an entire folder hierarchy to `dom0`.
 
 ### What does sync script do
 
-Sync script pulls `qubescusto.top` and `qubescusto` folder recursively (i.e. children are included) into `/srv/salt` folder in `dom0`
+Sync script pulls pillars and formulas from source domain `<domain>` to `dom0` respective folders `/srv/pillar` and `/srv/salt`.
 
-Edit sync script `sync-dom0-from-vm.sh` to update variables as per your environment.
+`qubescusto` folder is recursively copied (i.e. children are included) from respective source folders `qubesos-pillars` and `qubesos-formulas`.
 
 ### Deploy sync script
 
@@ -32,35 +34,39 @@ chmod u+x sync-dom0-from-vm.sh
 Just execute the script with root privileges in `dom0`:
 
 ```bash
-sudo ./sync-dom0-from-vm.sh
+sudo ./sync-dom0-from-vm.sh <source-domain>
 ```
 
-## TODO
+Get help
+```bash
+sudo ./sync-dom0-from-vm.sh -h
+```
 
-Enable dev top file: `sudo qubesctl top.enable qubescusto.dev`
+### Check if sync script worked
 
-Can also disable existing one: `sudo qubesctl top.disable topd.top`
+To check `qubescusto` is activated in pillars, use following command on `dom0`: `sudo qubesctl top.enabled pillar=true`.
 
-Check dev top file is enabled: `sudo qubesctl top.enabled`
+Expected output:
+
+
+To check `qubescusto` is activated in formulas, use following command on `dom0`: `sudo qubesctl top.enabled pillar=true`
+
+Expected output:
+
+### Apply state manually
 
 Apply states to all domains: `sudo qubesctl --all state.highstate`
 
-Apply states to only tmpl-dev: `sudo qubesctl --targets tmpl-dev state.hightstate`
+Apply states to only `<domain>`: `sudo qubesctl --targets <domain> state.hightstate`
 
-Apply states to only tmpl-dev without dom0: `sudo qubesctl --skip-dom0 --targets tmpl-dev state.hightstate`
+Apply states to only `<domain>` without dom0 part (i.e. domain creation): `sudo qubesctl --skip-dom0 --targets <domain> state.hightstate`
 
-Display logs: `sudo cat /var/log/qubes/mgmt-tmpl-dev.log`
+Logs are under: `/var/log/qubes/mgmt-<domain>.log`
 
-
-
-Enable qubescusto pillar file: `sudo qubesctl top.enable qubescusto pillar=true`
-
-Check qubescusto pillar file is enabled: `sudo qubesctl top.enabled pillar=true`
-
-Can also disable qubescusto pillar file: `sudo qubesctl top.disable qubescusto pillar=true`
-
-
-
-## TODO TIPS
+### Tips & Tricks for formulas
 
 Cannot require a package in a VM (require: pkg: <id>) as package installation has been executed in the template (i.e. in another minion)
+
+## States
+
+TODO
