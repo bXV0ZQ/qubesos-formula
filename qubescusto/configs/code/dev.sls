@@ -17,9 +17,9 @@ code_settings_saltstack:
     - filename: /home/user/.config/Code/User/settings.json
     - text:
       - |
-        '"files.associations": {
+        "files.associations": {
             "*.sls": "yaml",
             "*.top": "yaml"
-        }'
+        }
     - require_in:
       - file: code_settings
