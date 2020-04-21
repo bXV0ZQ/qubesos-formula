@@ -1,7 +1,0 @@
-{
-{%- if accumulator|default(False) %}
-{%-     if 'code_settings' in accumulator %}
-{{          accumulator['code_settings'] | join(',\n') | indent(4, true) }}
-{%      endif -%}
-{%  endif -%}
-}

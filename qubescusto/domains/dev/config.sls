@@ -7,13 +7,10 @@ include:
 
 code_settings_saltstack:
   file.accumulated:
-    - name: code_settings
+    - name: code_settings_files_associations
     - filename: /home/user/.config/Code/User/settings.json
     - text:
-      - |
-        "files.associations": {
-            "*.sls": "yaml",
-            "*.top": "yaml"
-        }
+      - '"*.sls": "yaml"'
+      - '"*.top": "yaml"'
     - require_in:
       - file: code_settings

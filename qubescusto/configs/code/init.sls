@@ -67,7 +67,7 @@ code_ext_gitlens:
 code_settings:
   file.managed:
     - name: /home/user/.config/Code/User/settings.json
-    - source: salt://qubescusto/configs/code/files/settings.jinja
+    - source: salt://qubescusto/configs/code/files/settings.json.jinja
     - template: jinja
     - user: user
     - group: user
