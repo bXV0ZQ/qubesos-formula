@@ -1,8 +1,6 @@
 include:
-  - qubescusto.packages
+  - qubescusto.configs.git.packages
+  - qubescusto.configs.zsh.packages
   - qubescusto.configs.zsh.user
   - qubescusto.configs.zsh.fonts
-
-#
-# Custo for dev template
-#
+  - qubescusto.configs.code.packages

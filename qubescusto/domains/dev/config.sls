@@ -1,7 +1,7 @@
 include:
   - qubescusto.configs.code.dev
   - qubescusto.configs.zsh
-  - qubescusto.configs.github.dev
+  - qubescusto.configs.git.dev
 
 # SaltStack dev
 

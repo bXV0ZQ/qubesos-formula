@@ -1,25 +1,3 @@
-#
-# Common Packages
-#
-
-# Git
-
-git:
-  pkg.installed:
-    - version: latest
-
-# ZSH
-
-zsh:
-  pkg.installed:
-    - version: latest
-
-# tmux
-
-tmux:
-  pkg.installed:
-    - version: latest
-
 # Visual Studio Code
 
 code_repo:
