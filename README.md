@@ -67,6 +67,15 @@ Logs are under: `/var/log/qubes/mgmt-<domain>.log`
 
 Cannot require a package in a VM (require: pkg: <id>) as package installation has been executed in the template (i.e. in another minion)
 
+Get list of QVM modules properties: `/srv/salt/_modules/ext_module_qvm.py`
+
+Get prefs of a VM: `sudo qubesctl qvm.prefs <vmname>`
+
+Get features of a VM: `sudo qubesctl qvm.features <vmname>`
+
+Get pillars sent to a domain (beware data will be decrypted): `sudo qubesctl --skip-dom0 --targets dev-phone pillar.data`
+
 ## States
 
 TODO
+

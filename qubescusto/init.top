@@ -1,10 +1,10 @@
 base:
   'dom0':
-    - qubescusto.domains.dev
+    - qubescusto.domains.dev._main
     - qubescusto.domains.dev.phone
   'tmpl-dev':
     - qubescusto.domains.dev.template.config
   'dev':
-    - qubescusto.domains.dev.config
+    - qubescusto.domains.dev._main.config
   'dev-phone':
     - qubescusto.domains.dev.phone.config
