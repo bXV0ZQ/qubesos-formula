@@ -1,4 +1,4 @@
-zsh_config_repo:
+zsh-config-repo:
   git.latest:
     - name: https://github.com/bXV0ZQ/prezto.git
     - target: /home/user/.zprezto
@@ -9,37 +9,37 @@ zsh_config_repo:
 
 # ZSH & prezto configuration
 
-zsh_config_zlogin:
+zsh-config-zlogin:
   file.symlink:
     - name: /home/user/.zlogin
     - target: /home/user/.zprezto/runcoms/zlogin
     - force: True
 
-zsh_config_zlogout:
+zsh-config-zlogout:
   file.symlink:
     - name: /home/user/.zlogout
     - target: /home/user/.zprezto/runcoms/zlogout
     - force: True
 
-zsh_config_zpreztorc:
+zsh-config-zpreztorc:
   file.symlink:
     - name: /home/user/.zpreztorc
     - target: /home/user/.zprezto/runcoms/zpreztorc
     - force: True
 
-zsh_config_zprofile:
+zsh-config-zprofile:
   file.symlink:
     - name: /home/user/.zprofile
     - target: /home/user/.zprezto/runcoms/zprofile
     - force: True
 
-zsh_config_zshenv:
+zsh-config-zshenv:
   file.symlink:
     - name: /home/user/.zshenv
     - target: /home/user/.zprezto/runcoms/zshenv
     - force: True
 
-zsh_config_zshrc:
+zsh-config-zshrc:
   file.symlink:
     - name: /home/user/.zshrc
     - target: /home/user/.zprezto/runcoms/zshrc
@@ -47,7 +47,7 @@ zsh_config_zshrc:
 
 # Prowerlevel 10k configuration
 
-zsh_config_prompt:
+zsh-config-prompt:
   file.symlink:
     - name: /home/user/.p10k.zsh
     - target: /home/user/.zprezto/runcoms/p10k.zsh
@@ -55,7 +55,7 @@ zsh_config_prompt:
 
 # tmux configuration (enabled at prezto startup)
 
-zsh_config_tmux:
+zsh-config-tmux:
   file.symlink:
     - name: /home/user/.tmux.conf
     - target: /home/user/.zprezto/runcoms/tmux.conf

@@ -3,7 +3,7 @@ include:
 
 # jq
 
-code_ext_jq:
+code-ext-jq:
   cmd.run:
     - name: code --install-extension davidnussio.vscode-jq-playground --force
     - runas: user
@@ -11,7 +11,7 @@ code_ext_jq:
 
 # jinja
 
-code_ext_jinja:
+code-ext-jinja:
   cmd.run:
     - name: code --install-extension samuelcolvin.jinjahtml --force
     - runas: user

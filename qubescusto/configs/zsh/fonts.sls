@@ -1,4 +1,4 @@
-font_powerlevel10k_regular:
+font-powerlevel10k-regular:
   file.managed:
     - name: /usr/share/fonts/meslolgsnf/MesloLGS NF Regular.ttf
     - source: salt://qubescusto/configs/zsh/files/MesloLGS NF Regular.ttf
@@ -7,9 +7,9 @@ font_powerlevel10k_regular:
     - mode: 644
     - makedirs: True
     - require_in:
-      - cmd: font_cache_reload
+      - cmd: font-cache-reload
 
-font_powerlevel10k_bold:
+font-powerlevel10k-bold:
   file.managed:
     - name: /usr/share/fonts/meslolgsnf/MesloLGS NF Bold.ttf
     - source: salt://qubescusto/configs/zsh/files/MesloLGS NF Bold.ttf
@@ -18,9 +18,9 @@ font_powerlevel10k_bold:
     - mode: 644
     - makedirs: True
     - require_in:
-      - cmd: font_cache_reload
+      - cmd: font-cache-reload
 
-font_powerlevel10k_italic:
+font-powerlevel10k-italic:
   file.managed:
     - name: /usr/share/fonts/meslolgsnf/MesloLGS NF Italic.ttf
     - source: salt://qubescusto/configs/zsh/files/MesloLGS NF Italic.ttf
@@ -29,9 +29,9 @@ font_powerlevel10k_italic:
     - mode: 644
     - makedirs: True
     - require_in:
-      - cmd: font_cache_reload
+      - cmd: font-cache-reload
 
-font_powerlevel10k_bolditalic:
+font-powerlevel10k-bolditalic:
   file.managed:
     - name: /usr/share/fonts/meslolgsnf/MesloLGS NF Bold Italic.ttf
     - source: salt://qubescusto/configs/zsh/files/MesloLGS NF Bold Italic.ttf
@@ -40,9 +40,9 @@ font_powerlevel10k_bolditalic:
     - mode: 644
     - makedirs: True
     - require_in:
-      - cmd: font_cache_reload
+      - cmd: font-cache-reload
 
-font_cache_reload:
+font-cache-reload:
   cmd.run:
     - name: fc-cache -v
     - runas: user

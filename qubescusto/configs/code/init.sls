@@ -1,6 +1,6 @@
 # Global
 
-code_settings_telemetry:
+code-settings-telemetry:
   file.accumulated:
     - name: code_settings
     - filename: /home/user/.config/Code/User/settings.json
@@ -8,47 +8,47 @@ code_settings_telemetry:
       - '"telemetry.enableTelemetry": false'
       - '"telemetry.enableCrashReporter": false'
     - require_in:
-      - file: code_settings
+      - file: code-settings
 
 # Material Icon Theme
 
-code_ext_icons:
+code-ext-icons:
   cmd.run:
     - name: code --install-extension pkief.material-icon-theme --force
     - runas: user
     - onlyif: which code
 
-code_settings_ext_icons:
+code-settings-ext-icons:
   file.accumulated:
     - name: code_settings
     - filename: /home/user/.config/Code/User/settings.json
     - text: '"workbench.iconTheme": "material-icon-theme"'
     - require:
-      - cmd: code_ext_icons
+      - cmd: code-ext-icons
     - require_in:
-      - file: code_settings
+      - file: code-settings
 
 # Asciidoctor
 
-code_ext_asciidoctor:
+code-ext-asciidoctor:
   cmd.run:
     - name: code --install-extension joaompinto.asciidoctor-vscode --force
     - runas: user
     - onlyif: which code && which wkhtmltopdf
 
-code_settings_ext_asciidoctor:
+code-settings-ext-asciidoctor:
   file.accumulated:
     - name: code_settings
     - filename: /home/user/.config/Code/User/settings.json
     - text: '"asciidoc.wkhtmltopdf_path": "/usr/bin/wkhtmltopdf"'
     - require:
-      - cmd: code_ext_asciidoctor
+      - cmd: code-ext-asciidoctor
     - require_in:
-      - file: code_settings
+      - file: code-settings
 
 # Encode/Decode
 
-code_ext_encode:
+code-ext-encode:
   cmd.run:
     - name: code --install-extension mitchdenny.ecdc --force
     - runas: user
@@ -56,7 +56,7 @@ code_ext_encode:
 
 # Git
 
-code_ext_gitlens:
+code-ext-gitlens:
   cmd.run:
     - name: code --install-extension eamodio.gitlens --force
     - runas: user
@@ -64,7 +64,7 @@ code_ext_gitlens:
 
 # Settings
 
-code_settings:
+code-settings:
   file.managed:
     - name: /home/user/.config/Code/User/settings.json
     - source: salt://qubescusto/configs/code/files/settings.json.jinja

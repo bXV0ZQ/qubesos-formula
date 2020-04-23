@@ -1,13 +1,13 @@
 # Github
 
-github_username:
+github-username:
   git.config_set:
     - name: user.name
     - value: bXV0ZQ
     - user: user
     - global: True
 
-github_email:
+github-email:
   git.config_set:
     - name: user.email
     - value: 44335359+bXV0ZQ@users.noreply.github.com
@@ -16,7 +16,7 @@ github_email:
 
 # Private keys
 
-dev_private_key:
+dev-private-key:
   file.managed:
     - name: /home/user/.ssh/id_rsa
     - contents_pillar: dev:ssh:priv_key
@@ -26,7 +26,7 @@ dev_private_key:
     - attrs: a
     - makedirs: True
 
-dev_public_key:
+dev-public-key:
   file.managed:
     - name: /home/user/.ssh/id_rsa.pub
     - contents_pillar: dev:ssh:pub_key
