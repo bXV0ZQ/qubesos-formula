@@ -4,3 +4,4 @@ include:
   - qubescusto.configs.zsh.user
   - qubescusto.configs.zsh.fonts
   - qubescusto.configs.code.packages
+  - qubescusto.configs.java.packages
