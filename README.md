@@ -69,11 +69,17 @@ Cannot require a package in a VM (require: pkg: <id>) as package installation ha
 
 Get list of QVM modules properties: `/srv/salt/_modules/ext_module_qvm.py`
 
-Get prefs of a VM: `sudo qubesctl qvm.prefs <vmname>`
+Get prefs of a VM: `sudo qubesctl qvm.prefs <domain>`
 
-Get features of a VM: `sudo qubesctl qvm.features <vmname>`
+Get features of a VM: `sudo qubesctl qvm.features <domain>`
 
-Get pillars sent to a domain (beware data will be decrypted): `sudo qubesctl --skip-dom0 --targets dev-phone pillar.data`
+Get states applied to dom0: `sudo qubesctl state.show_highstate`
+
+Get states applied to a domain (beware query will be executed on the minion): `sudo qubesctl --skip-dom0 --targets <domain> state.show_highstate`
+
+Get pillars used on dom0 (beware data will be decrypted): `sudo qubesctl pillar.data`
+
+Get pillars sent to a domain (beware query will be executed on the minion so data will be decrypted there): `sudo qubesctl --skip-dom0 --targets <domain> pillar.data`
 
 ## States
 
