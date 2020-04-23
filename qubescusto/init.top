@@ -2,7 +2,7 @@ base:
   'dom0':
     - qubescusto.domains.dev._main
     - qubescusto.domains.dev.phone
-  'tmpl-dev':
+  {{ salt['pillar.get']('dev:domain:template', 'tmpl-dev') }}:
     - qubescusto.domains.dev.template.config
   'dev':
     - qubescusto.domains.dev._main.config
