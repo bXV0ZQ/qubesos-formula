@@ -1,6 +1,6 @@
 # Global
 
-code-settings-telemetry:
+vscode-settings-telemetry:
   file.accumulated:
     - name: code_settings
     - filename: /home/user/.config/Code/User/settings.json
@@ -8,47 +8,47 @@ code-settings-telemetry:
       - '"telemetry.enableTelemetry": false'
       - '"telemetry.enableCrashReporter": false'
     - require_in:
-      - file: code-settings
+      - file: vscode-settings
 
 # Material Icon Theme
 
-code-ext-icons:
+vscode-ext-icons:
   cmd.run:
     - name: code --install-extension pkief.material-icon-theme --force
     - runas: user
     - onlyif: which code
 
-code-settings-ext-icons:
+vscode-settings-ext-icons:
   file.accumulated:
     - name: code_settings
     - filename: /home/user/.config/Code/User/settings.json
     - text: '"workbench.iconTheme": "material-icon-theme"'
     - require:
-      - cmd: code-ext-icons
+      - cmd: vscode-ext-icons
     - require_in:
-      - file: code-settings
+      - file: vscode-settings
 
 # Asciidoctor
 
-code-ext-asciidoctor:
+vscode-ext-asciidoctor:
   cmd.run:
     - name: code --install-extension joaompinto.asciidoctor-vscode --force
     - runas: user
     - onlyif: which code && which wkhtmltopdf
 
-code-settings-ext-asciidoctor:
+vscode-settings-ext-asciidoctor:
   file.accumulated:
     - name: code_settings
     - filename: /home/user/.config/Code/User/settings.json
     - text: '"asciidoc.wkhtmltopdf_path": "/usr/bin/wkhtmltopdf"'
     - require:
-      - cmd: code-ext-asciidoctor
+      - cmd: vscode-ext-asciidoctor
     - require_in:
-      - file: code-settings
+      - file: vscode-settings
 
 # Encode/Decode
 
-code-ext-encode:
+vscode-ext-encode:
   cmd.run:
     - name: code --install-extension mitchdenny.ecdc --force
     - runas: user
@@ -56,7 +56,7 @@ code-ext-encode:
 
 # Git
 
-code-ext-gitlens:
+vscode-ext-gitlens:
   cmd.run:
     - name: code --install-extension eamodio.gitlens --force
     - runas: user
@@ -64,10 +64,10 @@ code-ext-gitlens:
 
 # Settings
 
-code-settings:
+vscode-settings:
   file.managed:
     - name: /home/user/.config/Code/User/settings.json
-    - source: salt://qubescusto/configs/code/files/settings.json.jinja
+    - source: salt://qubescusto/configs/vscode/files/settings.json.jinja
     - template: jinja
     - user: user
     - group: user

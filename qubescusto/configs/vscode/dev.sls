@@ -1,9 +1,9 @@
 include:
-  - qubescusto.configs.code
+  - qubescusto.configs.vscode
 
 # jq
 
-code-ext-jq:
+vscode-ext-jq:
   cmd.run:
     - name: code --install-extension davidnussio.vscode-jq-playground --force
     - runas: user
@@ -11,7 +11,7 @@ code-ext-jq:
 
 # jinja
 
-code-ext-jinja:
+vscode-ext-jinja:
   cmd.run:
     - name: code --install-extension samuelcolvin.jinjahtml --force
     - runas: user

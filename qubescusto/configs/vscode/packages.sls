@@ -1,18 +1,19 @@
 # Visual Studio Code
 
-code_repo:
+vscode-repo:
   pkgrepo.managed:
-    - name: code
+    - name: vscode
     - humanname: Visual Studio Code
     - baseurl: https://packages.microsoft.com/yumrepos/vscode
     - enabled: True
     - gpgcheck: 1
     - gpgkey: https://packages.microsoft.com/keys/microsoft.asc
     - require_in:
-      - pkg: code
+      - pkg: vscode
 
-code:
+vscode:
   pkg.installed:
+    - name: code
     - version: latest
 
 wkhtmltopdf:
