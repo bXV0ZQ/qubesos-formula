@@ -14,7 +14,7 @@ github-email:
     - user: user
     - global: True
 
-# Private keys
+# SSH keys
 
 dev-private-key:
   file.managed:
