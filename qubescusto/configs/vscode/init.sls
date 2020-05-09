@@ -67,7 +67,7 @@ vscode-ext-gitlens:
 vscode-settings:
   file.managed:
     - name: /home/user/.config/Code/User/settings.json
-    - source: salt://qubescusto/configs/vscode/files/settings.json.jinja
+    - source: salt://qubescusto/configs/vscode/files/settings.json.j2
     - template: jinja
     - user: user
     - group: user
