@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# This script will be executed at every VM startup, you can place your own
+# custom commands here. This include overriding some configuration in /etc,
+# starting services etc.
+
+# udev rules
+ln -s "{{ udevrulesfile }}" "/etc/udev/rules.d"
+udevadm control --reload
+
+# attach already connected devices
+/usr/bin/qrexec-client-vm dom0 dev.phone.Attach
