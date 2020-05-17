@@ -1,7 +1,7 @@
-dev-phone-udev-rules:
+dev-phone-udev-rules-usb-attach-trigger:
   file.managed:
-    - name: /rw/config/udev/51-dev-phone.rules
-    - source: salt://qubescusto/domains/dev/phone/files/51-dev-phone.attach.udev-rules.sh.j2
+    - name: /rw/config/udev/52-phone-attach.rules
+    - source: salt://qubescusto/domains/dev/phone/files/udev-rules.sys-usb.attach.sh.j2
     - template: jinja
     - context:  
         phonevm: dev-phone

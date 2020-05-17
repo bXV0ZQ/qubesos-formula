@@ -1,0 +1,21 @@
+{%- set devices = {} -%}
+{%- for phoneref in phonerefs | list -%}
+{%-      for usbdevice in phoneref['usb-devices']['direct'] | list -%}
+{%-          if devices[usbdevice['vendor']] is undefined -%}
+{%-              do devices.update({usbdevice['vendor'] : {}}) -%}
+{%-          endif -%}
+{%-          if devices[usbdevice['vendor']][usbdevice['product']] is undefined -%}
+{%-              do devices[usbdevice['vendor']].update({usbdevice['product'] : []}) -%}
+{%-          endif -%}
+{%-          do devices[usbdevice['vendor']][usbdevice['product']].append(phoneref['desc']) -%}
+{%-      endfor -%}
+{%- endfor -%}
+#
+# Allow automatic attachment to {{ phonevm }}
+#
+{%- for vendor, products in devices.items() %}
+{%      for product, descriptions in products.items() %}
+# Trigger for {{ descriptions | join(', ') | truncate(70) }}
+SUBSYSTEM=="usb", ATTR{idVendor}=="{{ vendor }}", ATTR{idProduct}=="{{ product }}", RUN+="/usr/bin/qrexec-client-vm dom0 dev.phone.Attach"
+{%      endfor %}
+{%- endfor %}

@@ -1,7 +1,0 @@
-#
-# Allow automatic attachment to {{ phonevm }}
-#
-{% for phoneref in phonerefs %}
-# Permissions for {{ phoneref['devices']|map(attribute='desc')|join(', ')|truncate(70, False, '...', 5) }}
-SUBSYSTEM=="usb", ATTR{idVendor}=="{{ phoneref['vendor'] }}", ATTR{idProduct}=="{{ phoneref['product'] }}", MODE="0666"
-{% endfor %}

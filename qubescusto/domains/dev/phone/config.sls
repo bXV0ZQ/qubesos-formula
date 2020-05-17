@@ -1,8 +1,6 @@
 include:
   - qubescusto.domains.dev.config
 
-{% set udevrulesfile = '/rw/config/51-dev-phone.rules' %}
-
 android-sdk-folder:
   file.directory:
     - name: /usr/local/android-sdk/cmdline-tools
@@ -74,7 +72,7 @@ dev-phone-rc-local:
     - source: salt://qubescusto/domains/dev/phone/files/rc.local.sh.j2
     - template: jinja
     - context:
-        udevrulesfile: {{ udevrulesfile }}
+        udevrulesfile: /rw/config/51-dev-phone.rules
     - user: root
     - group: root
     - mode: 755
@@ -83,8 +81,8 @@ dev-phone-rc-local:
 
 dev-phone-android-udev-rules:
   file.managed:
-    - name: {{ udevrulesfile }}
-    - source: salt://qubescusto/domains/dev/phone/files/51-dev-phone.android.udev-rules.sh.j2
+    - name: /rw/config/51-dev-phone.rules
+    - source: salt://qubescusto/domains/dev/phone/files/udev-rules.dev-phone.permissions.sh.j2
     - template: jinja
     - context:
         phonevm: dev-phone

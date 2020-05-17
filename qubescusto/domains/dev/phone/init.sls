@@ -22,7 +22,7 @@ dev-phone-volume:
 dev-phone-qubes-rpc:
   file.managed:
     - name: /etc/qubes-rpc/dev.phone.Attach
-    - source: salt://qubescusto/domains/dev/phone/files/qubes-rpc-dev.phone.Attach.sh.j2
+    - source: salt://qubescusto/domains/dev/phone/files/qubes-rpc.dev-phone-attach.sh.j2
     - template: jinja
     - context:
         phonevm: dev-phone
@@ -34,11 +34,12 @@ dev-phone-qubes-rpc:
 dev-phone-qubes-rpc-policy:
   file.managed:
     - name: /etc/qubes-rpc/policy/dev.phone.Attach
-    - source: salt://qubescusto/domains/dev/phone/files/qubes-rpc-policy-dev.phone.Attach.sh.j2
+    - source: salt://qubescusto/domains/dev/phone/files/qubes-rpc-policy.dev-phone-attach.sh.j2
     - template: jinja
     - context:
         phonevm: dev-phone
         usbvm: sys-usb
     - user: root
     - group: qubes
-    - mode: 644
+    - mode: 664
+

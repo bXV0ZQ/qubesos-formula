@@ -1,0 +1,21 @@
+{%- set devices = {} -%}
+{%- for phoneref in phonerefs | list -%}
+{%-      for usbdevice in phoneref['usb-devices']['direct'] | list -%}
+{%-          if devices[usbdevice['vendor']] is undefined -%}
+{%-              do devices.update({usbdevice['vendor'] : {}}) -%}
+{%-          endif -%}
+{%-          if devices[usbdevice['vendor']][usbdevice['product']] is undefined -%}
+{%-              do devices[usbdevice['vendor']].update({usbdevice['product'] : []}) -%}
+{%-          endif -%}
+{%-          do devices[usbdevice['vendor']][usbdevice['product']].append(phoneref['desc']) -%}
+{%-      endfor -%}
+{%- endfor -%}
+#
+# Allow automatic permissions for phones
+#
+{%- for vendor, products in devices.items() %}
+{%      for product, descriptions in products.items() %}
+# Permissions for {{ descriptions | join(', ') | truncate(70) }}
+SUBSYSTEM=="usb", ATTR{idVendor}=="{{ vendor }}", ATTR{idProduct}=="{{ product }}", MODE="0666"
+{%      endfor %}
+{%- endfor %}

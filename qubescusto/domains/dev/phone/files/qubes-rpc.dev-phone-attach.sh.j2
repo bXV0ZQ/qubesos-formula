@@ -1,0 +1,17 @@
+#!/bin/sh
+
+if qvm-check --quiet --running "{{ phonevm }}" 2> /dev/null; then
+{%- for phoneref in phonerefs -%}
+{%      if phoneref['qvm-usb-ids'] | is_list %}
+{%          for qvmusbid in phoneref['qvm-usb-ids'] %}
+    #
+    # Allow automatic attachment to dev-phone of {{ phoneref['desc'] }}
+    #
+    if qvm-usb | grep "{{ qvmusbid }}" > /dev/null 2>&1; then
+        domdev=`qvm-usb | grep "{{ qvmusbid }}" | cut -d' ' -f1`
+        qvm-usb attach {{ phonevm }} ${domdev}
+    fi
+{%          endfor %}
+{%-    endif %}
+{%- endfor -%}
+fi

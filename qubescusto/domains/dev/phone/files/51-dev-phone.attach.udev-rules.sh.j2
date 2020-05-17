@@ -1,7 +1,0 @@
-#
-# Allow automatic attachment to {{ phonevm }}
-#
-{% for phoneref in phonerefs %}
-# Trigger for {{ phoneref['devices']|map(attribute='desc')|join(', ')|truncate(70, False, '...', 5) }}
-SUBSYSTEM=="usb", ATTR{idVendor}=="{{ phoneref['vendor'] }}", ATTR{idProduct}=="{{ phoneref['product'] }}", RUN+="/usr/bin/qrexec-client-vm dom0 dev.phone.Attach"
-{% endfor %}
