@@ -4,9 +4,7 @@ base:
     - qubescusto.domains.dev.phone
   {{ salt['pillar.get']('dev:domain:template', 'tmpl-dev') }}:
     - qubescusto.domains.dev.template.config
-  # Pillar 'qvm:sys-usb:name' seems not to work
-  # So matching both sys-usb and sys-net that could be potential USB VMs seems to be the best solution so far
-  'sys-net':
+  'sys-usb':
     - qubescusto.qubes.sys-usb.config
     - qubescusto.domains.dev.phone.usb-attach-trigger
   'dev':

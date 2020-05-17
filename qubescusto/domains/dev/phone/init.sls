@@ -38,7 +38,7 @@ dev-phone-qubes-rpc-policy:
     - template: jinja
     - context:
         phonevm: dev-phone
-        usbvm: {{ salt['pillar.get']('qvm:sys-usb:name', 'sys-usb') }}
+        usbvm: sys-usb
     - user: root
     - group: qubes
     - mode: 644
