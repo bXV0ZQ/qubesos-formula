@@ -90,3 +90,11 @@ dev-phone-android-udev-rules:
     - user: root
     - group: root
     - mode: 755
+
+dev-phone-start-adb-via-usb:
+  file.managed:
+    - name: /usr/local/bin/start-adb-via-usb.sh
+    - source: salt://qubescusto/domains/dev/phone/files/start-adb-via-usb.sh.j2
+    - user: root
+    - group: root
+    - mode: 755

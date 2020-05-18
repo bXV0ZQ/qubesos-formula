@@ -7,6 +7,7 @@ base:
   'sys-usb':
     - qubescusto.qubes.sys-usb.config
     - qubescusto.domains.dev.phone.usb-attach-trigger
+    - qubescusto.domains.dev.phone.usb-permissions
   'dev':
     - qubescusto.domains.dev._main.config
   'dev-phone':

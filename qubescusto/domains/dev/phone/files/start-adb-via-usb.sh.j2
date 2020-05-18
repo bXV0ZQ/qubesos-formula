@@ -1,0 +1,7 @@
+#!/bin/sh
+
+adb kill-server
+
+qrexec-client-vm dom0 dev.phone.StartADB
+
+qvm-connect-tcp ::5037

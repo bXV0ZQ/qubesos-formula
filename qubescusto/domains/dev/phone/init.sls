@@ -1,6 +1,7 @@
 include:
   - qvm.sys-firewall
   - qubescusto.domains.dev.template
+  - qubescusto.qubes.dom0.qubes-tcp-connect
 
 dev-phone:
   qvm.vm:
@@ -19,7 +20,7 @@ dev-phone-volume:
     - require:
       - qvm: dev-phone
 
-dev-phone-qubes-rpc:
+dev-phone-qubes-rpc-attach:
   file.managed:
     - name: /etc/qubes-rpc/dev.phone.Attach
     - source: salt://qubescusto/domains/dev/phone/files/qubes-rpc.dev-phone-attach.sh.j2
@@ -31,7 +32,7 @@ dev-phone-qubes-rpc:
     - group: root
     - mode: 755
 
-dev-phone-qubes-rpc-policy:
+dev-phone-qubes-rpc-policy-attach:
   file.managed:
     - name: /etc/qubes-rpc/policy/dev.phone.Attach
     - source: salt://qubescusto/domains/dev/phone/files/qubes-rpc-policy.dev-phone-attach.sh.j2
@@ -43,3 +44,33 @@ dev-phone-qubes-rpc-policy:
     - group: qubes
     - mode: 664
 
+dev-phone-qubes-rpc-polic-adb-connect:
+  file.accumulated:
+    - name: tcp_connections
+    - filename: /etc/qubes-rpc/policy/qubes.ConnectTCP
+    - text: 'dev-phone @default allow,target=sys-usb'
+    - require_in:
+      - file: qubes-tcp-connect
+
+dev-phone-qubes-rpc-adb-start:
+  file.managed:
+    - name: /etc/qubes-rpc/dev.phone.StartADB
+    - source: salt://qubescusto/domains/dev/phone/files/qubes-rpc.dev-phone-adb-start.sh.j2
+    - template: jinja
+    - context:
+        phonevm: dev-phone
+        usbvm: sys-usb
+    - user: root
+    - group: root
+    - mode: 755
+
+dev-phone-qubes-rpc-policy-adb-start:
+  file.managed:
+    - name: /etc/qubes-rpc/policy/dev.phone.StartADB
+    - source: salt://qubescusto/domains/dev/phone/files/qubes-rpc-policy.dev-phone-adb-start.sh.j2
+    - template: jinja
+    - context:
+        phonevm: dev-phone
+    - user: root
+    - group: qubes
+    - mode: 664

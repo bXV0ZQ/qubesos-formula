@@ -4,6 +4,9 @@
 # custom commands here. This include overriding some configuration in /etc,
 # starting services etc.
 
+# increase xen_gntalloc limit
+echo 4096 > /sys/module/xen_gntalloc/parameters/limit
+
 # udev rules
 ln -s "{{ udevrulesfile }}" "/etc/udev/rules.d"
 udevadm control --reload
