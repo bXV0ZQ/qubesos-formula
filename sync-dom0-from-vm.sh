@@ -22,7 +22,7 @@ declare -r PILLARS_FOLDER="qubesos-pillars"
 declare -r PILLARS_DST_DIR="/srv/pillar"
 
 #
-# FUNCTIONS
+# UTILS
 #
 
 RED="\\033[1;31m"
