@@ -1,6 +1,14 @@
 include:
   - qubescusto.configs.vscode
 
+# Git
+
+vscode-ext-gitlens:
+  cmd.run:
+    - name: code --install-extension eamodio.gitlens --force
+    - runas: user
+    - onlyif: which code
+
 # jq
 
 vscode-ext-jq:

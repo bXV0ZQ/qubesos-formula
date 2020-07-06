@@ -54,14 +54,6 @@ vscode-ext-encode:
     - runas: user
     - onlyif: which code
 
-# Git
-
-vscode-ext-gitlens:
-  cmd.run:
-    - name: code --install-extension eamodio.gitlens --force
-    - runas: user
-    - onlyif: which code
-
 # Settings
 
 vscode-settings:
