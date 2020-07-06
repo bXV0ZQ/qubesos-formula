@@ -1,0 +1,2 @@
+include:
+  - qubescusto.configs.vscode

@@ -1,13 +1,18 @@
 base:
   'dom0':
+    - qubescusto.domains.home.acsa
     - qubescusto.domains.dev._main
     - qubescusto.domains.dev.phone
-  {{ salt['pillar.get']('dev:domain:template', 'tmpl-dev') }}:
-    - qubescusto.domains.dev.template.config
   'sys-usb':
     - qubescusto.qubes.sys-usb.config
     - qubescusto.domains.dev.phone.usb-attach-trigger
     - qubescusto.domains.dev.phone.usb-permissions
+  {{ salt['pillar.get']('home:domain:template', 'tmpl-home') }}:
+    - qubescusto.domains.home.template.config
+  'acsa':
+    - qubescusto.domains.home.acsa.config
+  {{ salt['pillar.get']('dev:domain:template', 'tmpl-dev') }}:
+    - qubescusto.domains.dev.template.config
   'dev':
     - qubescusto.domains.dev._main.config
   'dev-phone':
