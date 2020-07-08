@@ -44,7 +44,7 @@ dev-phone-qubes-rpc-policy-attach:
     - group: qubes
     - mode: 664
 
-dev-phone-qubes-rpc-polic-adb-connect:
+dev-phone-qubes-rpc-policy-adb-connect:
   file.accumulated:
     - name: tcp_connections
     - filename: /etc/qubes-rpc/policy/qubes.ConnectTCP
@@ -52,10 +52,10 @@ dev-phone-qubes-rpc-polic-adb-connect:
     - require_in:
       - file: qubes-tcp-connect
 
-dev-phone-qubes-rpc-adb-start:
+dev-phone-qubes-rpc-remote-adb-start:
   file.managed:
-    - name: /etc/qubes-rpc/dev.phone.StartADB
-    - source: salt://qubescusto/domains/dev/phone/files/qubes-rpc.dev-phone-adb-start.sh.j2
+    - name: /etc/qubes-rpc/dev.phone.StartRemoteADB
+    - source: salt://qubescusto/domains/dev/phone/files/qubes-rpc.dev-phone-remote-adb-start.sh.j2
     - template: jinja
     - context:
         phonevm: dev-phone
@@ -64,10 +64,33 @@ dev-phone-qubes-rpc-adb-start:
     - group: root
     - mode: 755
 
-dev-phone-qubes-rpc-policy-adb-start:
+dev-phone-qubes-rpc-policy-remote-adb-start:
   file.managed:
-    - name: /etc/qubes-rpc/policy/dev.phone.StartADB
-    - source: salt://qubescusto/domains/dev/phone/files/qubes-rpc-policy.dev-phone-adb-start.sh.j2
+    - name: /etc/qubes-rpc/policy/dev.phone.StartRemoteADB
+    - source: salt://qubescusto/domains/dev/phone/files/qubes-rpc-policy.dev-phone-remote-adb.sh.j2
+    - template: jinja
+    - context:
+        phonevm: dev-phone
+    - user: root
+    - group: qubes
+    - mode: 664
+
+dev-phone-qubes-rpc-remote-adb-stop:
+  file.managed:
+    - name: /etc/qubes-rpc/dev.phone.StopRemoteADB
+    - source: salt://qubescusto/domains/dev/phone/files/qubes-rpc.dev-phone-remote-adb-stop.sh.j2
+    - template: jinja
+    - context:
+        phonevm: dev-phone
+        usbvm: sys-usb
+    - user: root
+    - group: root
+    - mode: 755
+
+dev-phone-qubes-rpc-policy-remote-adb-stop:
+  file.managed:
+    - name: /etc/qubes-rpc/policy/dev.phone.StopRemoteADB
+    - source: salt://qubescusto/domains/dev/phone/files/qubes-rpc-policy.dev-phone-remote-adb.sh.j2
     - template: jinja
     - context:
         phonevm: dev-phone

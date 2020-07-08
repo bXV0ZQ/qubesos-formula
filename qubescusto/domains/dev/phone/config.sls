@@ -91,10 +91,10 @@ dev-phone-android-udev-rules:
     - group: root
     - mode: 755
 
-dev-phone-start-adb-via-usb:
+dev-phone-remote-adb-control:
   file.managed:
-    - name: /usr/local/bin/start-adb-via-usb.sh
-    - source: salt://qubescusto/domains/dev/phone/files/start-adb-via-usb.sh.j2
+    - name: /usr/local/bin/adbctl
+    - source: salt://qubescusto/domains/dev/phone/files/adbctl.sh.j2
     - user: root
     - group: root
     - mode: 755
