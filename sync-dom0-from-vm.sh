@@ -92,6 +92,11 @@ case "$1" in
     "-h"|"--help") usage && exit 0;;
 esac
 
+# Require root privileges
+if [[ "$EUID" -ne 0 ]]; then
+    print_error "Requires root privileges (please use sudo)" && usage && exit 1
+fi
+
 # Retrieve mandatory arguments
 if [[ $# -ge 1 ]]; then
     QDOMAIN=$1
@@ -101,7 +106,7 @@ else
 fi
 
 # Look for options
-while [ -n "$1" ]; do
+while [[ -n "$1" ]]; do
     case "$1" in
         "-o"|"--object-type")
             if [[ $# -ge 2 ]]; then
@@ -182,7 +187,7 @@ esac
 # MAIN PROCESS
 #
 
-if [ "${sync_pillars}" = true ]; then
+if [[ "${sync_pillars}" == true ]]; then
     print_info "Syncing pillars"
 
     # Disable pillars
@@ -203,7 +208,7 @@ if [ "${sync_pillars}" = true ]; then
 
 fi
 
-if [ "${sync_formulas}" = true ]; then
+if [[ "${sync_formulas}" == true ]]; then
     print_info "Syncing formulas"
 
     # Disable formulas
