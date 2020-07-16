@@ -4,6 +4,9 @@
 # custom commands here. This include overriding some configuration in /etc,
 # starting services etc.
 
+# Cleaning up previous remote adb usage in case it has been forgotten
+/usr/bin/qrexec-client-vm dom0 dev.phone.StopRemoteADB
+
 # udev rules
 for rules in /rw/config/udev/*; do
     [ -e "${rules}" ] || continue;

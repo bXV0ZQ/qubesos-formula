@@ -35,7 +35,7 @@ dev-phone-qubes-rpc-attach:
 dev-phone-qubes-rpc-policy-attach:
   file.managed:
     - name: /etc/qubes-rpc/policy/dev.phone.Attach
-    - source: salt://qubescusto/domains/dev/phone/files/qubes-rpc-policy.dev-phone-attach.sh.j2
+    - source: salt://qubescusto/domains/dev/phone/files/qubes-rpc-policy.all.sh.j2
     - template: jinja
     - context:
         phonevm: dev-phone
@@ -67,7 +67,7 @@ dev-phone-qubes-rpc-remote-adb-start:
 dev-phone-qubes-rpc-policy-remote-adb-start:
   file.managed:
     - name: /etc/qubes-rpc/policy/dev.phone.StartRemoteADB
-    - source: salt://qubescusto/domains/dev/phone/files/qubes-rpc-policy.dev-phone-remote-adb.sh.j2
+    - source: salt://qubescusto/domains/dev/phone/files/qubes-rpc-policy.dev-phone-only.sh.j2
     - template: jinja
     - context:
         phonevm: dev-phone
@@ -90,10 +90,11 @@ dev-phone-qubes-rpc-remote-adb-stop:
 dev-phone-qubes-rpc-policy-remote-adb-stop:
   file.managed:
     - name: /etc/qubes-rpc/policy/dev.phone.StopRemoteADB
-    - source: salt://qubescusto/domains/dev/phone/files/qubes-rpc-policy.dev-phone-remote-adb.sh.j2
+    - source: salt://qubescusto/domains/dev/phone/files/qubes-rpc-policy.all.sh.j2
     - template: jinja
     - context:
         phonevm: dev-phone
+        usbvm: sys-usb
     - user: root
     - group: qubes
     - mode: 664
