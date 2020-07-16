@@ -32,7 +32,7 @@ vscode-settings-ext-icons:
 
 vscode-ext-asciidoctor:
   cmd.run:
-    - name: code --install-extension joaompinto.asciidoctor-vscode --force
+    - name: code --install-extension asciidoctor.asciidoctor-vscode --force
     - runas: user
     - onlyif: which code && which wkhtmltopdf
 
