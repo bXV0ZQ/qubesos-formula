@@ -14,9 +14,10 @@ vscode-settings-telemetry:
 
 vscode-ext-icons:
   cmd.run:
-    - name: code --install-extension pkief.material-icon-theme --force
+    - name: code --install-extension PKief.material-icon-theme --force
     - runas: user
     - onlyif: which code
+    - unless: "code --list-extensions | grep \"^PKief.material-icon-theme$\""
 
 vscode-settings-ext-icons:
   file.accumulated:
@@ -35,6 +36,7 @@ vscode-ext-asciidoctor:
     - name: code --install-extension asciidoctor.asciidoctor-vscode --force
     - runas: user
     - onlyif: which code && which wkhtmltopdf
+    - unless: "code --list-extensions | grep \"^asciidoctor.asciidoctor-vscode$\""
 
 vscode-settings-ext-asciidoctor:
   file.accumulated:
@@ -53,6 +55,7 @@ vscode-ext-encode:
     - name: code --install-extension mitchdenny.ecdc --force
     - runas: user
     - onlyif: which code
+    - unless: "code --list-extensions | grep \"^mitchdenny.ecdc$\""
 
 # Settings
 
