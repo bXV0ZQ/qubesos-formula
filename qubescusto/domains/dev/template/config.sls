@@ -5,3 +5,4 @@ include:
   - qubescusto.configs.zsh.fonts
   - qubescusto.configs.vscode.packages
   - qubescusto.configs.java.packages
+  - qubescusto.configs.python.packages
