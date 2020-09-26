@@ -1,0 +1,12 @@
+defaults:
+  _global_:
+    template:
+      label: grey
+  dev:
+    domain:
+      template: tmpl-dev-f32
+      label: blue
+  home:
+    domain:
+      template: tmpl-home-f32
+      label: purple
