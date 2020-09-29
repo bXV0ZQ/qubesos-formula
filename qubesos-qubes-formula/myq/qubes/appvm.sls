@@ -26,3 +26,12 @@ include:
       - label: {{ qconf.label }}
     - require:
       - qvm: {{ qconf.template }}
+
+{% if qconf.volume | default(-1) > 0 %}
+{{ qconf.name }}-volume:
+  cmd.run:
+    - name: qvm-volume resize {{ qconf.name }}:private {{ qconf.volume }}
+    - onlyif: test $(qvm-volume info {{ qconf.name }}:private size 2>/dev/null) -lt {{ qconf.volume }}
+    - require:
+      - qvm: {{ qconf.name }}
+{% endif %}
