@@ -1,3 +1,5 @@
+{% from 'myq/qubes/macros.jinja' import template_id with context %}
+
 {% set qcontext = {} %}
 {% include 'myq/qubes/load_context.jinja' with context %}
 
@@ -11,7 +13,7 @@ label: {{ qcontext.defaults.template.label }}
 {% do qconf.update(conf) %}
 {% endif %}
 
-{{ qconf.name }}:
+{{ template_id(qconf.name) }}:
   qvm.vm:
     - name: {{ qconf.name }}
     - clone:

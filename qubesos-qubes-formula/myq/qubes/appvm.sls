@@ -1,3 +1,6 @@
+{% from 'myq/qubes/macros.jinja' import appvm_id with context %}
+{% from 'myq/qubes/macros.jinja' import template_id with context %}
+
 {% set qcontext = {} %}
 {% include 'myq/qubes/load_context.jinja' with context %}
 
@@ -16,7 +19,7 @@ network: True
 include:
   - myq.{{ qconf.domain }}.{{ qconf.template }}
 
-{{ qconf.name }}:
+{{ appvm_id(qconf.name) }}:
   qvm.vm:
     - name: {{ qconf.name }}
     - present:
@@ -31,10 +34,10 @@ include:
       - netvm: {{ qconf.netvm }}
 {% endif %}
     - require:
-      - qvm: {{ qconf.template }}
+      - qvm: {{ template_id(qconf.template) }}
 
 {% if qconf.volume | default(-1) > 0 %}
-{{ qconf.name }}-volume:
+{{ appvm_id(qconf.name) }}-volume:
   cmd.run:
     - name: qvm-volume resize {{ qconf.name }}:private {{ qconf.volume }}
     - onlyif: test $(qvm-volume info {{ qconf.name }}:private size 2>/dev/null) -lt {{ qconf.volume }}
