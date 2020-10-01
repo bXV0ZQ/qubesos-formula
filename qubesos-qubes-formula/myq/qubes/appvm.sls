@@ -6,6 +6,7 @@ domain: {{ qcontext.domain }}
 name: {{ qcontext.name }}
 template: {{ qcontext.defaults.domain.template }}
 label: {{ qcontext.defaults.domain.label }}
+network: True
 {% endload %}
 
 {% if conf is defined %}
@@ -24,6 +25,11 @@ include:
     - prefs:
       - template: {{ qconf.template }}
       - label: {{ qconf.label }}
+{% if not qconf.network %}
+      - netvm: ''
+{% elif qconf.netvm is defined %}
+      - netvm: {{ qconf.netvm }}
+{% endif %}
     - require:
       - qvm: {{ qconf.template }}
 
