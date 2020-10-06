@@ -10,9 +10,9 @@
 {% set name = (conf | default({})).name | default(_name) %}
 
 {# Retrieve defaults #}
-{% set defaults = salt.pillar.get(
+{% set defaults = salt['pillar.get'](
     'defaults:' ~ domain,
-    default=salt.pillar.get('defaults:_global_'),
+    default=salt['pillar.get']('defaults:_global_'),
     merge=True
 )%}
 
