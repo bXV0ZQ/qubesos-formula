@@ -1,7 +1,7 @@
-{% from 'myq/qubes/macros.jinja' import template_id with context %}
+{% from 'myq/qubes/macros.j2' import template_id with context %}
 
 {% set qcontext = {} %}
-{% include 'myq/qubes/load_context.jinja' with context %}
+{% include 'myq/qubes/load_context.j2' with context %}
 
 {% load_yaml as qconf %}
 domain: {{ qcontext.domain }}
