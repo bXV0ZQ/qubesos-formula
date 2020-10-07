@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# This script will be executed at every VM startup, you can place your own
+# custom commands here. This include overriding some configuration in /etc,
+# starting services etc.
+
+# Add hook to Network Manager
+ln -s "{{ hookfile }}" "/etc/NetworkManager/dispatcher.d"

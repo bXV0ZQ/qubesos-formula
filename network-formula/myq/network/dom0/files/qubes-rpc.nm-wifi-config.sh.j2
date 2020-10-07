@@ -1,0 +1,84 @@
+#!/bin/sh
+
+declare -r NMCONN_FILE_LOCATION="/rw/config/NM-system-connections"
+
+function src_nmconn_file() {
+    local tmp=$1
+    local ssid=$2
+
+    echo "${tmp_dir}/${ssid}.nmconnection"
+    return 0
+}
+
+function dst_nmconn_file() {
+    local ssid=$1
+
+    echo "${NMCONN_FILE_LOCATION}/${ssid}.nmconnection"
+    return 0
+}
+
+function is_interface_active() {
+    local ifname=$1
+
+    local ifstate=$(qvm-run --pass-io --user=user "{{ netvm }}" "nmcli -t -g GENERAL.STATE device show ${ifname}")
+    case "${ifstate}" in
+        "100 (connected)") return 0;;
+        *) return -1;;
+    esac
+}
+
+function is_wifi_ap_detected() {
+    local ifname=$1
+    local ssid=$2
+
+    local detected_ssid=$(qvm-run --pass-io --user=user "{{ netvm }}" "nmcli -t -g ssid device wifi list ifname ${ifname}" | grep "^${ssid}$")
+    case "${detected_ssid}" in
+        "${ssid}") return 0;;
+        *) return -1;;
+    esac
+}
+
+function activate() {
+    local ssid=$1
+    local tmp_dir=$(mktemp -d --suffix=-nm-wifi-config --tmpdir=/tmp)
+    local src_nmconn_file=$(src_nmconn_file "${tmp_dir}" "${ssid}")
+    local dst_nmconn_file=$(dst_nmconn_file "${ssid}")
+
+    sudo qubesctl state.single file.managed \
+        name="${src_nmconn_file}" \
+        source="salt://myq/network/dom0/files/nmconnection.j2" \
+        template="jinja"
+        context="{\"ssid\":\"${ssid}\"}"
+    
+    cat "${src_nmconn_file}" | qvm-run --pass-io --user=root "{{ netvm }}" "cat > ${dst_nmconn_file}"
+    if [ $? -eq 0 ]; then
+        qvm-run --user=root "{{ netvm }}" "chmod 600 /rw/config/NM-system-connections/${ssid}.nmconnection"
+    else
+        qvm-run --user=root "{{ netvm }}" "rm -f ${dst_nmconn_file}"
+    fi
+    
+    rm -fr "${tmp_dir}"
+
+}
+
+function deactivate() {
+    local ssid=$1
+    local dst_nmconn_file=$(dst_nmconn_file "${ssid}")
+
+    qvm-run --user=root "{{ netvm }}" "rm -f ${dst_nmconn_file}"
+
+}
+
+if qvm-check --quiet --running "{{ netvm }}" 2> /dev/null; then
+{% for ssid, config in wifi.items() %}
+    if is_interface_active "{{ config.ifname }}"; then
+        if is_wifi_ap_detected "{{ config.ifname }}" "{{ ssid }}"; then
+            activate "{{ ssid }}"
+        else
+            deactivate "{{ ssid }}"
+        fi
+    else
+        deactivate "{{ ssid }}"
+    fi
+{% endfor %}
+fi

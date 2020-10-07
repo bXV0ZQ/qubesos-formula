@@ -1,0 +1,20 @@
+roles:
+  netvm: sys-net-usb
+network:
+  wifi:
+    myfirstwifissid:
+      ifname: wlan0
+      autoconnect: True
+      secret: |
+      -----BEGIN PGP MESSAGE-----
+
+      XXXX
+      -----END PGP MESSAGE-----
+    mysecondwifissid:
+      ifname: wlan0
+      autoconnect: False
+      secret: |
+      -----BEGIN PGP MESSAGE-----
+
+      YYYY
+      -----END PGP MESSAGE-----
