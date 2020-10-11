@@ -1,0 +1,35 @@
+context:
+  user: myuser
+roles:
+  netvm: sys-net-usb
+network-profiles:
+  profile1:
+    name: My first profile
+    wifi:
+      myfirstwifissid:
+        ifname: wlan0
+        autoconnect: 999
+        secret: |
+          -----BEGIN PGP MESSAGE-----
+
+          XXXX
+          -----END PGP MESSAGE-----
+      mysecondwifissid:
+        ifname: wlan0
+        autoconnect: 0
+        secret: |
+          -----BEGIN PGP MESSAGE-----
+
+          YYYY
+          -----END PGP MESSAGE-----
+  profile2:
+    name: My second profile
+    wifi:
+      mythirdwifissid:
+        ifname: wlan0
+        autoconnect: 999
+        secret: |
+          -----BEGIN PGP MESSAGE-----
+
+          AAAA
+          -----END PGP MESSAGE-----

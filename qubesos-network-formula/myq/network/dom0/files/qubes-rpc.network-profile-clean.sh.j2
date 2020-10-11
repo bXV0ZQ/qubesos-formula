@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# Network profiles cleanup script must be idempotent as it will be call every time a new profile is set, even if no previous profile had been set.
+
+qvm-run --user=root "{{ netvm }}" "rm --interactive=never /rw/config/NM-system-connections/*"
