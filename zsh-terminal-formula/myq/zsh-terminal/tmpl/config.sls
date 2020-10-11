@@ -1,3 +1,3 @@
 include:
-  - myq.zsh-terminal.tmpl.user
-  - myq.zsh-terminal.tmpl.fonts
+  - myq.zsh-terminal.user
+  - myq.zsh-terminal.fonts
