@@ -48,4 +48,6 @@ if qvm-check --quiet --running "{{ netvm }}" 2> /dev/null; then
 {% for ssid in wifi %}
     configure_wifi_connection "{{ ssid }}"
 {% endfor %}
+
+    qvm-run --user=root "{{ netvm }}" "nmcli connection reload"
 fi
