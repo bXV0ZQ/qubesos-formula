@@ -1,0 +1,9 @@
+vscode:
+  extensions:
+    - PKief.material-icon-theme
+    - asciidoctor.asciidoctor-vscode
+    - mitchdenny.ecdc
+    - eamodio.gitlens
+    - davidnussio.vscode-jq-playground
+    - samuelcolvin.jinjahtml
+    - ms-python.python

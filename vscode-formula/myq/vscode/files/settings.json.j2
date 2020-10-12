@@ -1,0 +1,12 @@
+{
+{%- if accumulator | default(False) %}
+{%-    if 'code_settings' in accumulator %}
+{{ accumulator['code_settings'] | join(',\n') | indent(4, true) }}{% endif %}
+{%-    if 'code_settings_files_associations' in accumulator %}
+{%-      if 'code_settings' in accumulator %}{{ "," }}{% endif %}
+    "files.associations": {
+{{      accumulator['code_settings_files_associations'] | join(',\n') | indent(8, true) }}
+    }
+{%-    endif %}
+{%-  endif %}
+}
