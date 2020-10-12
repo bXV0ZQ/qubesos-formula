@@ -9,7 +9,7 @@
 network-profile-qubes-rpc-{{ pname }}:
   file.managed:
     - name: /etc/qubes-rpc/network.profile.{{ pname | capitalize }}
-    - source: salt://myq/network/dom0/files/qubes-rpc.network-profile-set.sh.j2
+    - source: salt://myq/network/files/qubes-rpc.network-profile-set.sh.j2
     - template: jinja
     - context:
         netvm: {{ pillar['roles']['netvm'] }}
@@ -22,7 +22,7 @@ network-profile-qubes-rpc-{{ pname }}:
 network-profile-qubes-rpc-{{ pname }}-policy:
   file.managed:
     - name: /etc/qubes-rpc/policy/network.profile.{{ pname }}
-    - source: salt://myq/network/dom0/files/qubes-rpc-policy.network-profile.sh.j2
+    - source: salt://myq/network/files/qubes-rpc-policy.network-profile.sh.j2
     - template: jinja
     - context:
         netvm: {{ pillar['roles']['netvm'] }}
@@ -35,7 +35,7 @@ network-profile-qubes-rpc-{{ pname }}-policy:
 network-profile-menu-{{ pname }}:
   file.managed:
     - name: {{ desktop_file }}
-    - source: salt://myq/network/dom0/files/desktop-file.j2
+    - source: salt://myq/network/files/desktop-file.j2
     - template: jinja
     - context:
         name: "profile: {{ profile.name}}"
@@ -50,7 +50,7 @@ network-profile-menu-{{ pname }}:
 network-profile-qubes-rpc-clean:
   file.managed:
     - name: /etc/qubes-rpc/network.profile.Clean
-    - source: salt://myq/network/dom0/files/qubes-rpc.network-profile-clean.sh.j2
+    - source: salt://myq/network/files/qubes-rpc.network-profile-clean.sh.j2
     - template: jinja
     - context:
         netvm: {{ pillar['roles']['netvm'] }}
@@ -61,7 +61,7 @@ network-profile-qubes-rpc-clean:
 network-profile-qubes-rpc-clean-policy:
   file.managed:
     - name: /etc/qubes-rpc/policy/network.profile.Clean
-    - source: salt://myq/network/dom0/files/qubes-rpc-policy.network-profile.sh.j2
+    - source: salt://myq/network/files/qubes-rpc-policy.network-profile.sh.j2
     - template: jinja
     - context:
         netvm: {{ pillar['roles']['netvm'] }}
@@ -77,7 +77,7 @@ network-profile-qubes-rpc-clean-policy:
 network-profile-menu-clean:
   file.managed:
     - name: {{ desktop_file }}
-    - source: salt://myq/network/dom0/files/desktop-file.j2
+    - source: salt://myq/network/files/desktop-file.j2
     - template: jinja
     - context:
         name: "Clean profiles"
@@ -91,7 +91,7 @@ network-profile-menu-clean:
 network-profile-menu-directory:
   file.managed:
     - name: {{ directory_file }}
-    - source: salt://myq/network/dom0/files/directory-file.j2
+    - source: salt://myq/network/files/directory-file.j2
     - template: jinja
     - context:
         name: "Configure Network Profiles"
