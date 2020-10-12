@@ -1,5 +1,3 @@
-# Visual Studio Code
-
 vscode-repo:
   pkgrepo.managed:
     - name: vscode
