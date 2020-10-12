@@ -6,7 +6,7 @@ font-powerlevel10k-regular:
     - group: user
     - mode: 644
     - makedirs: True
-    - require_in:
+    - onchanges_in:
       - cmd: font-cache-reload
 
 font-powerlevel10k-bold:
@@ -17,7 +17,7 @@ font-powerlevel10k-bold:
     - group: user
     - mode: 644
     - makedirs: True
-    - require_in:
+    - onchanges_in:
       - cmd: font-cache-reload
 
 font-powerlevel10k-italic:
@@ -28,7 +28,7 @@ font-powerlevel10k-italic:
     - group: user
     - mode: 644
     - makedirs: True
-    - require_in:
+    - onchanges_in:
       - cmd: font-cache-reload
 
 font-powerlevel10k-bolditalic:
@@ -39,7 +39,7 @@ font-powerlevel10k-bolditalic:
     - group: user
     - mode: 644
     - makedirs: True
-    - require_in:
+    - onchanges_in:
       - cmd: font-cache-reload
 
 font-cache-reload:
