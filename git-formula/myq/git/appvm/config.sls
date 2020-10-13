@@ -1,0 +1,2 @@
+include:
+  - myq.git.gitconfig
