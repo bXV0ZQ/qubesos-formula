@@ -1,0 +1,28 @@
+#!yaml|gpg
+
+ssh:
+  keys:
+    github:
+      name: id_github
+      priv_key: |
+        -----BEGIN PGP MESSAGE-----
+
+        XXXX
+        -----END PGP MESSAGE-----
+      pub_key: |
+        -----BEGIN PGP MESSAGE-----
+
+        YYYY
+        -----END PGP MESSAGE-----
+    ssh-client:
+      name: id_rsa
+      priv_key: |
+        -----BEGIN PGP MESSAGE-----
+
+        AAAA
+        -----END PGP MESSAGE-----
+      pub_key: |
+        -----BEGIN PGP MESSAGE-----
+
+        BBBB
+        -----END PGP MESSAGE-----
