@@ -1,4 +1,3 @@
-
 {% for extension in salt['pillar.get']('vscode:extensions',{}) %}
 vscode-ext-{{ extension | lower }}:
   cmd.run:
