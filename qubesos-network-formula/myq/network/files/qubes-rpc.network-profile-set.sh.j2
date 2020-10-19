@@ -56,4 +56,6 @@ if qvm-check --quiet --running "{{ netvm }}" 2> /dev/null; then
 {% endfor %}
 
     qvm-run --user=root "{{ netvm }}" "nmcli connection reload"
+
+    notify-send "Network profile {{ profilename }} deployed"
 fi

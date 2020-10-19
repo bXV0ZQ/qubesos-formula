@@ -14,6 +14,7 @@ network-profile-qubes-rpc-{{ pname }}:
     - context:
         netvm: {{ pillar['roles']['netvm'] }}
         profile: {{ pname }}
+        profilename: {{ profile.name }}
         wifi: {{ profile.wifi }}
     - user: root
     - group: root

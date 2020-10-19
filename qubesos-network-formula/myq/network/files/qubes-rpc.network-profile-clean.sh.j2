@@ -4,4 +4,6 @@
 
 if qvm-check --quiet --running "{{ netvm }}" 2> /dev/null; then
     qvm-run --user=root "{{ netvm }}" "rm --interactive=never /rw/config/NM-system-connections/*"
+
+    notify-send "Network profiles cleaned"
 fi
