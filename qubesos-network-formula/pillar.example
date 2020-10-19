@@ -9,7 +9,6 @@ network-profiles:
     name: My first profile
     wifi:
       myfirstwifissid:
-        ifname: wlan0
         autoconnect: 999
         secret: |
           -----BEGIN PGP MESSAGE-----
@@ -17,7 +16,6 @@ network-profiles:
           XXXX
           -----END PGP MESSAGE-----
       mysecondwifissid:
-        ifname: wlan0
         autoconnect: 0
         secret: |
           -----BEGIN PGP MESSAGE-----
@@ -28,7 +26,6 @@ network-profiles:
     name: My second profile
     wifi:
       mythirdwifissid:
-        ifname: wlan0
         autoconnect: 999
         secret: |
           -----BEGIN PGP MESSAGE-----

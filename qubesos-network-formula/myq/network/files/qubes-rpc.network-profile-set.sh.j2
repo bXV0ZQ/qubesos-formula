@@ -20,6 +20,7 @@ function dst_nmconn_file() {
 
 function configure_wifi_connection() {
     local ssid=$1
+    local ifname=$2
     local tmp_dir=$(mktemp -d --suffix=-nm-wifi-config --tmpdir=/tmp)
     local src_nmconn_file=$(src_nmconn_file "${tmp_dir}" "${ssid}")
     local dst_nmconn_file=$(dst_nmconn_file "${ssid}")
@@ -28,7 +29,7 @@ function configure_wifi_connection() {
         name="${src_nmconn_file}" \
         source="${NMCONN_FILE_TEMPLATE}" \
         template="jinja" \
-        context="{\"profile\":\"{{ profile }}\",\"ssid\":\"${ssid}\"}"
+        context="{\"profile\":\"{{ profile }}\",\"ssid\":\"${ssid}\",\"ifname\":\"${ifname}\"}"
     
     cat "${src_nmconn_file}" | qvm-run --pass-io --user=root "{{ netvm }}" "cat > ${dst_nmconn_file}"
     if [ $? -eq 0 ]; then
@@ -45,8 +46,13 @@ function configure_wifi_connection() {
 /etc/qubes-rpc/network.profile.Clean
 
 if qvm-check --quiet --running "{{ netvm }}" 2> /dev/null; then
+
+    ifname=$(qvm-run --pass-io --user=root "{{ netvm }}" "nmcli -t dev | grep -E \"^[^:]+:wifi:.*\" | head -1 | cut -d: -f1")
+
+    [[ -z "${ifname}" ]] && notify-send "No network interace found for wifi" && exit 1
+
 {% for ssid in wifi %}
-    configure_wifi_connection "{{ ssid }}"
+    configure_wifi_connection "{{ ssid }}" "${ifname}"
 {% endfor %}
 
     qvm-run --user=root "{{ netvm }}" "nmcli connection reload"

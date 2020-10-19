@@ -3,7 +3,7 @@
 id={{ ssid }}
 uuid={{ ssid | uuid }}
 type=wifi
-interface-name={{ config.ifname }}
+interface-name={{ ifname }}
 permissions=user:user:;
 {% if config.autoconnect is defined -%}
 autoconnect=true
