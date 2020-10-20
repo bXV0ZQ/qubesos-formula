@@ -1,4 +1,4 @@
-{% for extension in salt['pillar.get']('vscode:extensions',{}) %}
+{% for extension in salt['pillar.get']('vscode:extensions', []) %}
 vscode-ext-{{ extension | lower }}:
   cmd.run:
     - name: code --install-extension {{ extension }} --force
