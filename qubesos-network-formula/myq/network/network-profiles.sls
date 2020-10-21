@@ -1,9 +1,9 @@
-{% set desktop_files=[] %}
+{% set desktop_files = [] %}
 
-{% set home_folder=salt['user.info'](pillar['context']['user']).home %}
+{% set home_folder = salt['user.info'](pillar['context']['user']).home %}
 
 {% for pname, profile in pillar['network-profiles'].items() %}
-{% set desktop_file=home_folder ~ "/.local/share/applications/network-profile-" ~ pname ~ ".desktop" %}
+{% set desktop_file = home_folder ~ "/.local/share/applications/network-profile-" ~ pname ~ ".desktop" %}
 {% do desktop_files.append(desktop_file) %}
 
 network-profiles-qubes-rpc-{{ pname }}:
@@ -72,7 +72,7 @@ network-profiles-qubes-rpc-clean-policy:
     - require:
       - file: network-profiles-qubes-rpc-clean
 
-{% set desktop_file=home_folder ~ "/.local/share/applications/network-profile-clean.desktop" %}
+{% set desktop_file = home_folder ~ "/.local/share/applications/network-profile-clean.desktop" %}
 {% do desktop_files.append(desktop_file) %}
 
 network-profiles-menu-clean:
@@ -88,7 +88,7 @@ network-profiles-menu-clean:
     - onchanges_in:
       - cmd: network-profiles-menu-install
 
-{% set directory_file=home_folder ~ "/.local/share/desktop-directories/network-profile.directory" %}
+{% set directory_file = home_folder ~ "/.local/share/desktop-directories/network-profile.directory" %}
 network-profiles-menu-directory:
   file.managed:
     - name: {{ directory_file }}
