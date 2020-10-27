@@ -1,0 +1,10 @@
+usb-devices:
+  - # my phone
+    desc: My Phone
+    permissions-for:
+      - # Bootloader
+        vendor: 'xxxx'
+        product: 'yyyy'
+      - # Recovery - Foo
+        vendor: 'aaaa'
+        product: 'bbbb'
