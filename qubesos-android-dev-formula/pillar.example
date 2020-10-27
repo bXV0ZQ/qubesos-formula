@@ -1,0 +1,14 @@
+roles:
+  usbvm: sys-net-usb
+android-dev:
+  platform-tools:
+    - adb
+    - fastboot
+  emulators:
+    tools:
+      - emulator
+    platforms:
+      android-24:
+        - system-images;android-24;default;armeabi-v7a
+      android-30:
+        - system-images;android-30;google_apis_playstore;x86_64
