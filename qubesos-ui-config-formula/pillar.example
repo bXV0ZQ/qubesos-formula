@@ -1,3 +1,5 @@
+context:
+  user: myuser
 keyboard:
   shortcuts:
     # Replace <Ctrl>+<Shift>+P that is used by vscode
@@ -16,5 +18,3 @@ keyboard:
     - shortcut: /commands/custom/<Super>q
       action: set
       value: 'xflock4'
-context:
-  user: myuser
