@@ -1,3 +1,7 @@
+{% set usbvm = salt['cmd.shell']('qvm-ls --tags usbvm --raw-list') %}
+
+{% if usbvm | length %}
+
 {% for vmname, devices in salt['pillar.get']('usb-dispatch', {}).items() %}
 usb-dispatch-qubes-rpc-attach-{{ vmname }}:
   file.managed:
@@ -18,10 +22,12 @@ usb-dispatch-qubes-rpc-attach-{{ vmname }}-policy:
     - template: jinja
     - context:
         vmname: {{ vmname }}
-        usbvm: {{ pillar['roles']['usbvm'] }}
+        usbvm: {{ usbvm }}
     - user: root
     - group: qubes
     - mode: 664
     - require:
       - file: usb-dispatch-qubes-rpc-attach-{{ vmname }}
 {% endfor %}
+
+{% endif %}
