@@ -11,6 +11,7 @@ template: {{ qcontext.defaults.domain.template }}
 label: {{ qcontext.defaults.domain.label }}
 network: True
 internal: False
+appmenus: False
 {% endload %}
 
 {% if conf is defined %}
@@ -38,7 +39,9 @@ include:
 {% endif %}
     - features:
       - enable:
+{% if qconf.appmenus %}
         - appmenus-dispvm
+{% endif %}
 {% if qconf.internal %}
         - internal
 {% endif %}
