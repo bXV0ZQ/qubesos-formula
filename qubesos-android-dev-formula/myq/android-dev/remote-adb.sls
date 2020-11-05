@@ -1,10 +1,13 @@
+{% set usbvm = salt['cmd.shell']('qvm-ls --tags usbvm --raw-list') %}
+
+{% if usbvm | length %}
 android-dev-qubes-rpc-remote-adb-start:
   file.managed:
     - name: /etc/qubes-rpc/android.dev.StartRemoteADB
     - source: salt://myq/android-dev/files/qubes-rpc.remote-adb-start.sh.j2
     - template: jinja
     - context:
-        usbvm: {{ pillar['roles']['usbvm'] }}
+        usbvm: {{ usbvm }}
     - user: root
     - group: root
     - mode: 755
@@ -24,7 +27,7 @@ android-dev-qubes-rpc-remote-adb-stop:
     - source: salt://myq/android-dev/files/qubes-rpc.remote-adb-stop.sh.j2
     - template: jinja
     - context:
-        usbvm: {{ pillar['roles']['usbvm'] }}
+        usbvm: {{ usbvm }}
     - user: root
     - group: root
     - mode: 755
@@ -37,3 +40,5 @@ android-dev-qubes-rpc-remote-adb-stop-policy:
     - user: root
     - group: qubes
     - mode: 664
+
+{% endif %}

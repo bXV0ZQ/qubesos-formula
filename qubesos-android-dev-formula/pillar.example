@@ -1,5 +1,3 @@
-roles:
-  usbvm: sys-net-usb
 android-dev:
   platform-tools:
     - adb
