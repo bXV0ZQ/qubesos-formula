@@ -1,5 +1,3 @@
-context:
-  user: myuser
 keyboard:
   shortcuts:
     # Replace <Ctrl>+<Shift>+P that is used by vscode
