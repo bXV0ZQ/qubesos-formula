@@ -67,6 +67,13 @@ include:
 {% if not qconf.internal %}
         - internal
 {% endif %}
+{% if qconf.tags is defined %}
+    - tags:
+      - add:
+{% for tag in qconf.tags %}
+        - {{ tag }}
+{% endfor %}
+{% endif %}
 {% if requires %}
     - require:
 {% for require in requires | list | unique %}
