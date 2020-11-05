@@ -1,7 +1,5 @@
 #!yaml|gpg
 
-roles:
-  netvm: sys-net-usb
 network-profiles:
   profile1:
     name: My first profile

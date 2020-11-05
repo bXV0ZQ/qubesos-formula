@@ -3,6 +3,10 @@
 {% set gui_user = salt['cmd.shell']('groupmems -l -g qubes') %}
 {% set home_folder = salt['user.info'](gui_user).home %}
 
+{% set netvm = salt['cmd.shell']('qvm-ls --tags netvm --raw-list') %}
+
+{% if netvm | length %}
+
 {% for pname, profile in pillar['network-profiles'].items() %}
 {% set desktop_file = home_folder ~ "/.local/share/applications/network-profile-" ~ pname ~ ".desktop" %}
 {% do desktop_files.append(desktop_file) %}
@@ -13,7 +17,7 @@ network-profiles-qubes-rpc-{{ pname }}:
     - source: salt://myq/network/files/qubes-rpc.network-profile-set.sh.j2
     - template: jinja
     - context:
-        netvm: {{ pillar['roles']['netvm'] }}
+        netvm: {{ netvm }}
         profile: {{ pname }}
         profilename: {{ profile.name }}
         wifi: {{ profile.wifi }}
@@ -27,7 +31,7 @@ network-profiles-qubes-rpc-{{ pname }}-policy:
     - source: salt://myq/network/files/qubes-rpc-policy.network-profile.sh.j2
     - template: jinja
     - context:
-        netvm: {{ pillar['roles']['netvm'] }}
+        netvm: {{ netvm }}
     - user: root
     - group: qubes
     - mode: 664
@@ -55,7 +59,7 @@ network-profiles-qubes-rpc-clean:
     - source: salt://myq/network/files/qubes-rpc.network-profile-clean.sh.j2
     - template: jinja
     - context:
-        netvm: {{ pillar['roles']['netvm'] }}
+        netvm: {{ netvm }}
     - user: root
     - group: root
     - mode: 755
@@ -66,7 +70,7 @@ network-profiles-qubes-rpc-clean-policy:
     - source: salt://myq/network/files/qubes-rpc-policy.network-profile.sh.j2
     - template: jinja
     - context:
-        netvm: {{ pillar['roles']['netvm'] }}
+        netvm: {{ netvm }}
     - user: root
     - group: qubes
     - mode: 664
@@ -104,3 +108,5 @@ network-profiles-menu-directory:
 network-profiles-menu-install:
   cmd.run:
     - name: xdg-desktop-menu install {{ directory_file }} {{ desktop_files | join(' ') }}
+
+{% endif %}
