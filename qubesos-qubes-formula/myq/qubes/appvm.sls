@@ -19,8 +19,21 @@ internal: False
 {% do qconf.update(conf) %}
 {% endif %}
 
+{% set includes = [] %}
+{% set requires = [] %}
+
+{% set rpm_template = salt['cmd.run']('qvm-prefs ' ~ qconf.template ~ ' installed_by_rpm') | to_bool %}
+{% if not rpm_template %}
+{% do includes.append('myq.' ~ qconf.domain ~ '.' ~ qconf.template) %}
+{% do requires.append('qvm: ' ~ template_id(qconf.template)) %}
+{% endif %}
+
+{% if includes %}
 include:
-  - myq.{{ qconf.domain }}.{{ qconf.template }}
+{% for include in includes | list | unique %}
+  - {{ include }}
+{% endfor %}
+{% endif %}
 
 {{ appvm_id(qconf.name) }}:
   qvm.vm:
@@ -54,8 +67,12 @@ include:
 {% if not qconf.internal %}
         - internal
 {% endif %}
+{% if requires %}
     - require:
-      - qvm: {{ template_id(qconf.template) }}
+{% for require in requires | list | unique %}
+      - {{ require }}
+{% endfor %}
+{% endif %}
 
 {% if qconf.volume | default(-1) > 0 %}
 {{ appvm_id(qconf.name) }}-volume:
