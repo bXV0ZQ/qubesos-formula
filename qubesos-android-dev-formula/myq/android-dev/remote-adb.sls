@@ -41,4 +41,33 @@ android-dev-qubes-rpc-remote-adb-stop-policy:
     - group: qubes
     - mode: 664
 
+{% set androidvms = salt['cmd.shell']('qvm-ls --tags android --raw-list') %}
+{% if androidvms | length %}
+{% for androidvm in androidvms.split('\n') | list | default([]) %}
+{{ androidvm }}-adb-connect:
+  file.accumulated:
+    - name: tcp_connections
+    - filename: /etc/qubes-rpc/policy/qubes.ConnectTCP
+    - text: '{{ androidvm }} @default allow,target={{ usbvm }}'
+    - require_in:
+      - file: qubesrpc-tcp-connect
+
+{{ androidvm }}-remote-adb-start-policy:
+  file.accumulated:
+    - name: remote_adb_policy_sources
+    - filename: /etc/qubes-rpc/policy/android.dev.StartRemoteADB
+    - text: '{{ androidvm }}'
+    - require_in:
+      - file: android-dev-qubes-rpc-remote-adb-start-policy
+
+{{ androidvm }}-remote-adb-stop-policy:
+  file.accumulated:
+    - name: remote_adb_policy_sources
+    - filename: /etc/qubes-rpc/policy/android.dev.StopRemoteADB
+    - text: '{{ androidvm }}'
+    - require_in:
+      - file: android-dev-qubes-rpc-remote-adb-stop-policy
+{% endfor %}
+{% endif %}
+
 {% endif %}
