@@ -30,7 +30,7 @@ include:
       - label: {{ qconf.label }}
 {% if qconf.disposable %}
       - class: DispVM
-{% endif%}
+{% endif %}
     - prefs:
       - template: {{ qconf.template }}
       - label: {{ qconf.label }}
@@ -41,10 +41,10 @@ include:
 {% endif %}
 {% if qconf.autostart %}
       - autostart: True
-{% endif%}
+{% endif %}
 {% if qconf.memory is defined %}
       - memory: {{ qconf.memory }}
-{% endif%}
+{% endif %}
     - features:
       - enable:
 {% if qconf.internal %}
