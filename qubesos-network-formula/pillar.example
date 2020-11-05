@@ -1,7 +1,5 @@
 #!yaml|gpg
 
-context:
-  user: myuser
 roles:
   netvm: sys-net-usb
 network-profiles:

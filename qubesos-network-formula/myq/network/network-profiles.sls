@@ -1,6 +1,7 @@
 {% set desktop_files = [] %}
 
-{% set home_folder = salt['user.info'](pillar['context']['user']).home %}
+{% set gui_user = salt['cmd.shell']('groupmems -l -g qubes') %}
+{% set home_folder = salt['user.info'](gui_user).home %}
 
 {% for pname, profile in pillar['network-profiles'].items() %}
 {% set desktop_file = home_folder ~ "/.local/share/applications/network-profile-" ~ pname ~ ".desktop" %}
