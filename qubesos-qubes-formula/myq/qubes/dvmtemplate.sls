@@ -29,7 +29,8 @@ include:
     - prefs:
       - template: {{ qconf.template }}
       - label: {{ qconf.label }}
-      - dispvm-allowed: True
+      - template-for-dispvms: True
+      - default-dispvm: {{ qconf.name }}
 {% if not qconf.network %}
       - netvm: ''
 {% elif qconf.netvm is defined %}
